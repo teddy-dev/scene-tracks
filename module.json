@@ -1,0 +1,26 @@
+{
+  "id": "scene-tracks",
+  "title": "Scene Tracks",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "description": "<p>Allows you to play background tracks per player based on their scene.</p>",
+  "authors": [
+    {
+      "name": "Teddy",
+      "discord": "@teddy",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "flags": {
+    "canUpload": false
+  },
+  "url": "https://github.com/teddy-dev/scene-tracks",
+  "manifest": "https://raw.githubusercontent.com/teddy-dev/scene-tracks/refs/heads/main/module.json",
+  "download": "https://github.com/teddy-dev/scene-tracks/raw/refs/heads/main/module.zip"
+}
