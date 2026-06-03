@@ -26,8 +26,7 @@ Hooks.on('canvasReady', async function() {
 });
 
 Hooks.on('renderSceneConfig', (app, html, data) => {
-    const input = `
-    <fieldset>
+    const input = `<fieldset>
         <legend>Scene Tracks</legend>
         <div class="form-group">
             <label for="${MODULE_ID}-file">Background Track</label>
@@ -44,8 +43,12 @@ Hooks.on('renderSceneConfig', (app, html, data) => {
     </fieldset>`;
 
     const root = html instanceof HTMLElement ? html : html?.[0];
-    const target = root.querySelector('[data-application-part="misc"] > fieldset:last-of-type');
+    const target = (game.release.generation === 14 ? 
+        root.querySelector('[data-application-part="misc"] > fieldset:last-of-type'):
+        root.querySelector('[data-tab="basic"] > fieldset:last-of-type'));
     if (target) target.insertAdjacentHTML('afterend', input);
+
+    console.log(`SCENE TRACK`, target);
 
     const fileButton = root.querySelector(`button[data-target="${MODULE_ID}-file"]`);
     if (fileButton) {
