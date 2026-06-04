@@ -1,3 +1,4 @@
+![FVTTVERSION](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dfor-the-badge%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fteddy-dev%2Fscene-tracks%2Frefs%2Fheads%2Fmain%2Fmodule.json)
 # 🔊 Scene Tracks for FoundryVTT
 A super basic module to allow scenes to have their own background tracks played only for players actively on the scene.
 
