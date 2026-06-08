@@ -9,18 +9,20 @@ Hooks.once('setup', () => {
 });
 
 Hooks.on('canvasReady', async function() {
-    if (playingTrack) {
-        playingTrack.stop();
-    }
-
     const path = game.canvas.scene.getFlag(MODULE_ID, "scene-track") || null;
     if (path) {
+        if (playingTrack && playingTrack.src == path) return;
+        if (playingTrack && playingTrack.src !== path) playingTrack.stop();
+
         playingTrack = await foundry.audio.AudioHelper.play({
             src: path,
             volume: game.settings.get(MODULE_ID, "trackVolume"),
             loop: true,
-            autoplay: true
+            autoplay: true,
+            channel: "music",
         }, false);
+    } else if (playingTrack) {
+        playingTrack.stop();
     }
     return;
 });
@@ -47,8 +49,6 @@ Hooks.on('renderSceneConfig', (app, html, data) => {
         root.querySelector('[data-application-part="misc"] > fieldset:last-of-type'):
         root.querySelector('[data-tab="basic"] > fieldset:last-of-type'));
     if (target) target.insertAdjacentHTML('afterend', input);
-
-    console.log(`SCENE TRACK`, target);
 
     const fileButton = root.querySelector(`button[data-target="${MODULE_ID}-file"]`);
     if (fileButton) {
