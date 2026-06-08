@@ -12,7 +12,7 @@ Hooks.on('canvasReady', async function() {
     const path = game.canvas.scene.getFlag(MODULE_ID, "scene-track") || null;
     if (path) {
         if (playingTrack && playingTrack.src == path) return;
-        if (playingTrack && playingTrack.src !== path) playingTrack.stop();
+        if (playingTrack && playingTrack.src !== path) clearNowPlaying();
 
         playingTrack = await foundry.audio.AudioHelper.play({
             src: path,
@@ -21,11 +21,15 @@ Hooks.on('canvasReady', async function() {
             autoplay: true,
             channel: "music",
         }, false);
-    } else if (playingTrack) {
-        playingTrack.stop();
-    }
+    } else if (playingTrack) clearNowPlaying();
     return;
 });
+
+function clearNowPlaying() {
+    playingTrack.stop();
+    playingTrack = null;
+    return;
+}
 
 Hooks.on('renderSceneConfig', (app, html, data) => {
     const input = `<fieldset>
