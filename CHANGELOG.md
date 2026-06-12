@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.5] 2026-06-09
+- Set the track to preload when the scene is loading so it is ready at or around when the scene loads for the client.
+
 ## [0.1.4-HOTFIX] 2026-06-08
 - Fixed an issue introduced in 0.1.3 that resulted in some issues in scenes without tracks.
 

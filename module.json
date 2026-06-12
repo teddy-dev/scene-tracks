@@ -1,7 +1,7 @@
 {
   "id": "scene-tracks",
   "title": "Scene Tracks",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

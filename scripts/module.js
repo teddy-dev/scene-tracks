@@ -4,11 +4,24 @@ import { registerSettings } from './settings.js';
 
 let playingTrack = null;
 
+const clearNowPlaying = () => {
+    playingTrack.stop();
+    playingTrack = null;
+    return;
+}
+
 Hooks.once('setup', () => {
     registerSettings();
+    return;
 });
 
-Hooks.on('canvasReady', async function() {
+Hooks.on("canvasInit", async (canvas) => {
+    const path = game.canvas.scene.getFlag(MODULE_ID, "scene-track") || null;
+    if (path) await foundry.audio.AudioHelper.preloadSound(path);
+    return;
+});
+
+Hooks.on('canvasReady', async () => {
     const path = game.canvas.scene.getFlag(MODULE_ID, "scene-track") || null;
     if (path) {
         if (playingTrack && playingTrack.src == path) return;
@@ -24,12 +37,6 @@ Hooks.on('canvasReady', async function() {
     } else if (playingTrack) clearNowPlaying();
     return;
 });
-
-function clearNowPlaying() {
-    playingTrack.stop();
-    playingTrack = null;
-    return;
-}
 
 Hooks.on('renderSceneConfig', (app, html, data) => {
     const input = `<fieldset>
